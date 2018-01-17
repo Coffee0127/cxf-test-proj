@@ -9,6 +9,22 @@
     <!-- 透過 jaxws:client 取得 WebService Client 端: 指定 "介面" 與 "發佈網址" -->
     <jaxws:client id="FunctionProcessService"
         serviceClass="io.github.coffee0127.service.FunctionProcessService"
-        address="http://127.0.0.1:8080/my-service/wsdl/s001" />
+        address="http://127.0.0.1:8080/my-service/wsdl/s001">
+        <jaxws:features>
+            <bean class="org.apache.cxf.feature.StaxTransformFeature">
+                <property name="inTransformElements">
+                    <map>
+                        <entry key="{http://io.github.coffee0127/}return" value="return" />
+                        <entry key="{http://io.github.coffee0127/}header" value="header" />
+                        <entry key="{http://io.github.coffee0127/}body" value="body" />
+                        <entry key="{http://io.github.coffee0127/}accessIp" value="accessIp" />
+                        <entry key="{http://io.github.coffee0127/}caseId" value="caseId" />
+                        <entry key="{http://io.github.coffee0127/}serviceId" value="serviceId" />
+                        <entry key="{http://io.github.coffee0127/}messageTimestamp" value="messageTimestamp" />
+                    </map>
+                </property>
+            </bean>
+        </jaxws:features>
+    </jaxws:client>
 
 </beans>
